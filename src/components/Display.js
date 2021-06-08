@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
 })
 
 export default props => {
-    const [value, setValue] = useState(props.displayValue)
+    // const [value, setValue] = useState(props.displayValue)
     return(
         <View style={styles.display}>
             <Text style={styles.displayValue} numberOfLines={1}>
-                {value}
+                {props.displayValue}
             </Text>
         </View>
     )
