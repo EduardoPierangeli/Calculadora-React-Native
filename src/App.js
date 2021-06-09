@@ -11,10 +11,12 @@ export default () =>{
     const [current, setCurrent] = useState(0)
     
     addDigito = n =>{
-        if(n === '.' && displayValue.includes('.')){
+        const limparDisplay = displayValue === '0' || clearDisplay
+        
+        if(n === '.' && !clearDisplay && displayValue.includes('.')){
             return
         }
-        const limparDisplay = displayValue === '0' || clearDisplay
+
         const currentValue = limparDisplay ? '' : displayValue
         const valorDisplay = displayValue ==='0'? n : currentValue + n
         setDisplayValue(valorDisplay)
