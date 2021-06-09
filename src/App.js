@@ -21,7 +21,7 @@ export default () =>{
         setClearDisplay(false)
 
         if(n !== '.'){
-            const newValue = parseFloat(displayValue)
+            const newValue = parseFloat(valorDisplay)
             const valores = [...values]
             valores[current] = newValue
             setValues(valores)
@@ -37,7 +37,25 @@ export default () =>{
     }
 
     selectOperation = o =>{
-        setOperation(o)
+        if(current === 0){
+            setCurrent(1)
+            setOperation(o)
+            setClearDisplay(true)
+        }else{
+            const equals = o === '='
+            const valores = [...values]
+            try{
+                valores[0] = eval(`${valores[0]} ${operation} ${valores[1]}`)
+            }catch(e){
+                valores[0] = values[0]
+            }
+            valores[1] = 0
+            setDisplayValue(`${valores[0]}`)
+            setOperation(equals ? null : o)
+            setCurrent(equals? 0 : 1)
+            setClearDisplay(!equals)
+            setValues(valores)
+        }
     }
         
     return(
